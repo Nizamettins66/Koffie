@@ -7,6 +7,8 @@ use app\models\BestellingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Medewerker;
+use Yii;
 
 /**
  * BestellingController implements the CRUD actions for Bestelling model.
@@ -64,23 +66,39 @@ class BestellingController extends Controller
      * Creates a new Bestelling model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
+
      */
-    public function actionCreate()
-    {
-        $model = new Bestelling();
+    // public function actionCreate()
+    // {
+    //     $model = new Bestelling();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
+    //     if ($this->request->isPost) {
+    //         if ($model->load($this->request->post()) && $model->save()) {
+    //             return $this->redirect(['view', 'id' => $model->id]);
+    //         }
+    //     } else {
+    //         $model->loadDefaultValues();
+    //     }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+    //     return $this->render('create', [
+    //         'model' => $model,
+    //     ]);
+    // }
+    
+public function actionCreate()
+{
+    $model = new Bestelling();
+    $medewerkers = Medewerker::find()->all();
+
+    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        return $this->redirect(['view', 'id' => $model->id]);
     }
+
+    return $this->render('create', [
+        'model' => $model,
+        'medewerkers' => $medewerkers
+    ]);
+}
 
     /**
      * Updates an existing Bestelling model.
