@@ -8,7 +8,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Medewerker;
+use app\models\Menu;
 use Yii;
+
 
 /**
  * BestellingController implements the CRUD actions for Bestelling model.
@@ -89,15 +91,17 @@ public function actionCreate()
 {
     $model = new Bestelling();
     $medewerkers = Medewerker::find()->all();
-
+    $menu = Menu::find()->all();
     if ($model->load(Yii::$app->request->post()) && $model->save()) {
         return $this->redirect(['view', 'id' => $model->id]);
     }
 
     return $this->render('create', [
         'model' => $model,
-        'medewerkers' => $medewerkers
+        'medewerkers' => $medewerkers,
+        'menu' => $menu
     ]);
+    
 }
 
     /**
@@ -149,4 +153,5 @@ public function actionCreate()
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+//nizamettin sari
 }
