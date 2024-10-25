@@ -20,7 +20,7 @@ $menuList = ArrayHelper::map($menu, 'id', 'naam');
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'medewerker_id')->dropDownList($medewerkerList, ['prompt' => ''])->label('Medwerker') ?>
+    <?= $form->field($model, 'medewerker_id')->dropDownList($medewerkerList, ['prompt' => ''])->label('Medewerker') ?>
 
     <?= $form->field($model, 'naam')->textInput(['maxlength' => true]) ?>
 
