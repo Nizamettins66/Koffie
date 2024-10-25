@@ -22,11 +22,11 @@ $menuList = ArrayHelper::map($menu, 'id', 'naam');
 
     <?= $form->field($model, 'medewerker_id')->dropDownList($medewerkerList, ['prompt' => ''])->label('Medewerker') ?>
 
-    <?= $form->field($model, 'naam')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'naam')->textInput(['maxlength' => true])->label('klantnaam') ?>
 
-    <?= $form->field($model, 'menu_id')->dropDownList($menuList, ['prompt' => ''])->label('Menu') ?>
+    <?= $form->field($model, 'menu_id')->dropDownList($menuList, ['prompt' => ''])->label('Bestelling') ?>
 
-    <?= $form->field($model, 'status')->dropDownList([ 'besteld' => 'Besteld', 'klaar' => 'Klaar', 'geleverd' => 'Geleverd', '' => '', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList([ 'besteld' => 'Besteld', 'klaar' => 'Klaar', 'geleverd' => 'Geleverd', '' => '', ], ['prompt' => ''])->label('Status Bestelling')  ?>
 
     <!-- <?= $form->field($model, 'timestamp')->textInput() ?> -->
 
