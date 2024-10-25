@@ -7,7 +7,7 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\BestellingSearch $searchModel */
+/** @var app\models\BestellingSearcher $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Bestellings';
@@ -30,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'medewerker_id',
+            [
+                'attribute' => 'medewerker_id',
+                  'label'     => 'Medewerker',
+                //   'filter'    => $medewerkerList,
+                'value'     => 'medewerkers.naam'
+            ],
+            //nizamettin sari
             'naam',
             'menu_id',
             'status',
