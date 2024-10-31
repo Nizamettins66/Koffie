@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Medewerker;
 use app\models\Menu;
+use yii\helpers\ArrayHelper;
 use Yii;
 
 
@@ -44,10 +45,13 @@ class BestellingController extends Controller
     {
         $searchModel = new BestellingSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $medewerkers = Medewerker::find()->all();
+        $medewerkerList = ArrayHelper::map($medewerkers, 'id', 'naam');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'medewerkerList' => $medewerkerList,
         ]);
     }
 
