@@ -47,11 +47,14 @@ class BestellingController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
         $medewerkers = Medewerker::find()->all();
         $medewerkerList = ArrayHelper::map($medewerkers, 'id', 'naam');
+        $menu = Menu::find()->all();
+        $menuList = ArrayHelper::map($menu, 'id', 'naam');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'medewerkerList' => $medewerkerList,
+            'menuList' => $menuList,    
         ]);
     }
 

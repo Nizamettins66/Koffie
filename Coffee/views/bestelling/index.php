@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use app\models\Menu;
 use yii\helpers\ArrayHelper;
 
 /** @var yii\web\View $this */
@@ -47,7 +48,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //nizamettin sari
             'naam',
-            'menu_id',
+            [
+                'attribute' => 'menu_id',
+                'label' => 'Bestelling',
+                'value' => function ($model) {
+                    return $model->menu ? $model->menu->naam : 'N/A'; // Zorg ervoor dat 'menu' de juiste relatie is
+                },
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'menu_id',
+                    $menuList, // Gebruik de doorgegeven lijst
+                    ['prompt' => '', 'class' => 'form-control']
+                ),
+            ],
             'status',
             //'timestamp',
             [
